@@ -1,0 +1,97 @@
+{
+  "clazz" : "SimpleContentType",
+  "id" : "3b3923396a3a50cc8ce08fae5fc3ad07",
+  "name" : "labels",
+  "variable" : "Labels",
+  "modDate" : "2025-02-19T21:34:55.000+00:00",
+  "iDate" : "2025-02-19T21:34:34.000+00:00",
+  "host" : "48190c8c-42c4-46af-8d1a-0cd5db894797",
+  "folder" : "SYSTEM_FOLDER",
+  "siteName" : "demo.dotcms.com",
+  "folderPath" : "/",
+  "icon" : "event_note",
+  "baseType" : "CONTENT",
+  "fields" : [ {
+    "clazz" : "RowField",
+    "id" : "b0e1148df892abd6925d39bbbefbfc88",
+    "modDate" : "2025-02-19T21:34:55.000+00:00",
+    "name" : "fields-0",
+    "fieldType" : "Row",
+    "fieldTypeLabel" : "Row",
+    "iDate" : "2025-02-19T21:34:34.000+00:00",
+    "variable" : "fields0",
+    "dataType" : "SYSTEM"
+  }, {
+    "clazz" : "ColumnField",
+    "id" : "d626dae515abf1b0c3fa06380f3d3517",
+    "modDate" : "2025-02-19T21:34:55.000+00:00",
+    "name" : "fields-1",
+    "sortOrder" : 1,
+    "fieldType" : "Column",
+    "fieldTypeLabel" : "Column",
+    "iDate" : "2025-02-19T21:34:34.000+00:00",
+    "variable" : "fields1",
+    "dataType" : "SYSTEM"
+  }, {
+    "clazz" : "SelectField",
+    "id" : "98e256609f84caf9bf62e5447cd7be15",
+    "modDate" : "2025-02-19T21:34:55.000+00:00",
+    "name" : "yes or no",
+    "variable" : "yesOrNo",
+    "sortOrder" : 2,
+    "values" : "yes|yes\r\nno|no",
+    "fieldType" : "Select",
+    "fieldTypeLabel" : "Select",
+    "iDate" : "2025-02-19T21:34:55.000+00:00",
+    "dataType" : "TEXT"
+  } ],
+  "layout" : [ {
+    "divider" : {
+      "clazz" : "RowField",
+      "id" : "b0e1148df892abd6925d39bbbefbfc88",
+      "modDate" : "2025-02-19T21:34:55.000+00:00",
+      "name" : "fields-0",
+      "fieldType" : "Row",
+      "fieldTypeLabel" : "Row",
+      "iDate" : "2025-02-19T21:34:34.000+00:00",
+      "variable" : "fields0",
+      "dataType" : "SYSTEM"
+    },
+    "columns" : [ {
+      "columnDivider" : {
+        "clazz" : "ColumnField",
+        "id" : "d626dae515abf1b0c3fa06380f3d3517",
+        "modDate" : "2025-02-19T21:34:55.000+00:00",
+        "name" : "fields-1",
+        "sortOrder" : 1,
+        "fieldType" : "Column",
+        "fieldTypeLabel" : "Column",
+        "iDate" : "2025-02-19T21:34:34.000+00:00",
+        "variable" : "fields1",
+        "dataType" : "SYSTEM"
+      },
+      "fields" : [ {
+        "clazz" : "SelectField",
+        "id" : "98e256609f84caf9bf62e5447cd7be15",
+        "modDate" : "2025-02-19T21:34:55.000+00:00",
+        "name" : "yes or no",
+        "variable" : "yesOrNo",
+        "sortOrder" : 2,
+        "values" : "yes|yes\r\nno|no",
+        "fieldType" : "Select",
+        "fieldTypeLabel" : "Select",
+        "iDate" : "2025-02-19T21:34:55.000+00:00",
+        "dataType" : "TEXT"
+      } ]
+    } ]
+  } ],
+  "metadata" : {
+    "CONTENT_EDITOR2_ENABLED" : false
+  },
+  "workflows" : [ {
+    "id" : "d61a59e1-a49c-46f2-a929-db2b4bfa88b2",
+    "variableName" : "SystemWorkflow"
+  } ],
+  "systemActionMappings" : { },
+  "dotCMSObjectType" : "ContentType"
+}

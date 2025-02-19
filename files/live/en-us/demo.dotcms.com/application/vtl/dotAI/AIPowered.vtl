@@ -1,0 +1,191 @@
+#set( $promptTitleField = "title" )
+#set( $promptBodyField = "editor-input-value-blogContent" )
+#set( $promptText = "Generate a summary of no more than 100 words for a web page SEO Description metadata field for a web page with the title $esc.quote${title}$esc.quote and the following text on the page: $esc.quote${body}$esc.quote.  Write in clear, unembellished style appropriate for search engine results." )
+#set($content = $dotcontent.find("$!{identifier}"))
+#set( $metaDescriptionFieldId = "metaDescription" )
+#set( $aiResponseFieldId = "ai-response" )
+
+#if (!$ai.isAiEnabled())
+<style>
+    .tooltip
+    {
+        position: relative;
+        display: inline-block;
+    }
+
+    .tooltip .tooltiptext
+    {
+        visibility: hidden;
+        width: 300px;
+        background-color: #4d544d;
+        color: #ffffff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 0.75rem;
+        /* Position the tooltip */
+        position: absolute;
+        z-index: 1;
+        bottom: -63px;
+        right: 0;
+    }
+
+    .tooltip:hover .tooltiptext
+    {
+        visibility: visible;
+    }
+
+    .dijitButton .dijitButtonText {
+        text-transform: none;
+    }
+</style>
+#end
+
+<div>
+    <div>
+        <textarea
+            id="ai-response"
+            rows="12"
+            maxlength="1600"
+            onchange="setState()"
+            class="editTextAreaField dijitTextBox dijitTextArea dijitTextBoxFocused dijitTextAreaFocused dijitFocused"
+        >$!content.metaDescription</textarea>
+    </div>
+    <div style="margin-top: 0.5rem; text-align: right">
+        <span id="send-prompt">
+            <span id="send-prompt_wrapper" style=""#if (!$ai.isAiEnabled()) class="tooltip"#end>
+                #if (!$ai.isAiEnabled())<span class="tooltiptext">Please configure dotAI to enable the "Generate with dotAI" feature.</span>#end
+                <span class="dijit dijitReset dijitInline dijitButton dijitButtonFocused dijitFocused #if (!$ai.isAiEnabled()) dijitButtonDisabled dijitDisabled #end">
+                    <span class="dijitReset dijitInline dijitButtonNode"#if ($ai.isAiEnabled()) onclick="sendAiPrompt()"#end>
+                        <span class="dijitReset dijitStretch dijitButtonContents" style="user-select: none;">
+                            <span class="dijitReset dijitInline dijitIcon dijitNoIcon"></span>
+                            <span class="dijitReset dijitInline dijitButtonText">Generate with dotAI</span>
+                        </span>
+                    </span>
+                    <button
+                        value=""
+                        class="dijitOffScreen"
+                        aria-hidden="true"
+                        onclick="sendAiPrompt()"
+                        #if (!$ai.isAiEnabled()) disabled="disabled"#end>
+                    </button>
+                </span>
+            </span>
+        </span>
+    </div>
+</div>
+
+<script>
+    const metaDescriptionFieldId = "$metaDescriptionFieldId";
+    const aiResponseFieldId = "$aiResponseFieldId";
+
+    function validateField(field) {
+        return field && field.value && field.value.trim() !== '';
+    }
+
+    async function getAiResponse(prompt) {
+        const uri = encodeURI(`/api/v1/ai/text/generate`);
+
+        return fetch(uri, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                prompt: prompt
+            })
+        });
+    }
+
+    function handleResponse(resp) {
+        if (!resp.ok) {
+            console.error("Failure:" + resp.statusText);
+            throw new Error('HTTP ' + resp.status);
+        }
+
+        return resp.json();
+    }
+
+    function validateResponse(data) {
+        if (!data) {
+            console.error('No results found in response from dotAI');
+            return false;
+        }
+
+        if (data.error) {
+            console.error('Error in response from dotAI: ' + data.error.message);
+            return false;
+        }
+
+        if (!data.choices || data.choices.length === 0) {
+            console.error('No results found in response from dotAI');
+            return false;
+        }
+
+        const firstChoice = data.choices[0];
+        if (!firstChoice || !firstChoice.message || !firstChoice.message.content) {
+            console.error("No message found in response from dotAI");
+            return false;
+        }
+
+        return firstChoice;
+    }
+
+    function setState() {
+        const metaDescriptionField = document.getElementById(metaDescriptionFieldId);
+        const aiResponseField = document.getElementById(aiResponseFieldId);
+        if (metaDescriptionField && aiResponseField) {
+            metaDescriptionField.value = aiResponseField.value;
+        }
+    }
+
+    function setAiResults(data) {
+        const firstChoice = validateResponse(data);
+
+        console.log(firstChoice);
+
+        if (!firstChoice) {
+            return;
+        }
+
+        const aiResponseField = document.getElementById(aiResponseFieldId);
+        if (aiResponseField) {
+            aiResponseField.value = firstChoice.message.content;
+        }
+
+        setState();
+    }
+
+    function toggleResponseField(disabled) {
+        const aiResponseField = document.getElementById(aiResponseFieldId);
+        if (aiResponseField) {
+            aiResponseField.disabled = disabled;
+        }
+    }
+
+    function sendAiPrompt() {
+        toggleResponseField(true);
+
+        const titleField = document.getElementById("$promptTitleField");
+        const bodyField = document.getElementById("$promptBodyField");
+
+        if (!validateField(titleField) || !validateField(bodyField)) {
+            toggleResponseField(false);
+            return;
+        }
+
+        const title = titleField.value.trim();
+        const body = bodyField.value.trim();
+        const prompt = `$promptText`;
+
+        getAiResponse(prompt)
+            .then(handleResponse)
+            .then(setAiResults)
+            .catch((error) => {
+                console.error(error);
+            })
+            .finally(() => toggleResponseField(false));
+    }
+
+    // Initialize the value when the page loads
+    window.addEventListener('load', setState);
+</script>

@@ -1,0 +1,128 @@
+{
+  "clazz" : "SimpleContentType",
+  "id" : "10259e4b8dd2cc75ea1b5ef044a7174a",
+  "name" : "demo-apis-my type",
+  "variable" : "DemoApisMyType",
+  "modDate" : "2025-02-19T21:00:12.000+00:00",
+  "iDate" : "2025-02-19T21:00:11.000+00:00",
+  "host" : "SYSTEM_HOST",
+  "folder" : "SYSTEM_FOLDER",
+  "siteName" : "systemHost",
+  "folderPath" : "/",
+  "icon" : "event_note",
+  "baseType" : "CONTENT",
+  "fields" : [ {
+    "clazz" : "RowField",
+    "id" : "940121976b56bfc948edee4af2b4c0ab",
+    "modDate" : "2025-02-19T21:00:11.000+00:00",
+    "name" : "Row Field",
+    "fieldType" : "Row",
+    "fieldTypeLabel" : "Row",
+    "iDate" : "2025-02-19T21:00:11.000+00:00",
+    "variable" : "rowField",
+    "dataType" : "SYSTEM"
+  }, {
+    "clazz" : "ColumnField",
+    "id" : "c172dcb77c9ba5754b4d82278a9fb573",
+    "modDate" : "2025-02-19T21:00:11.000+00:00",
+    "name" : "Column Field",
+    "sortOrder" : 1,
+    "fieldType" : "Column",
+    "fieldTypeLabel" : "Column",
+    "iDate" : "2025-02-19T21:00:11.000+00:00",
+    "variable" : "columnField",
+    "dataType" : "SYSTEM"
+  }, {
+    "clazz" : "TextField",
+    "searchable" : true,
+    "indexed" : true,
+    "listed" : true,
+    "id" : "a05be742bb5a2a8e4d36f0cb706e5765",
+    "modDate" : "2025-02-19T21:00:12.000+00:00",
+    "name" : "title",
+    "variable" : "title",
+    "required" : true,
+    "sortOrder" : 2,
+    "fixed" : true,
+    "fieldType" : "Text",
+    "fieldTypeLabel" : "Text",
+    "iDate" : "2025-02-19T21:00:11.000+00:00",
+    "dataType" : "TEXT"
+  }, {
+    "clazz" : "StoryBlockField",
+    "searchable" : true,
+    "indexed" : true,
+    "id" : "74b3290efc01392c5e4f9f1fab73a84d",
+    "modDate" : "2025-02-19T21:00:12.000+00:00",
+    "name" : "block",
+    "variable" : "block",
+    "sortOrder" : 3,
+    "fieldType" : "Story-Block",
+    "fieldTypeLabel" : "Block Editor",
+    "iDate" : "2025-02-19T21:00:11.000+00:00",
+    "dataType" : "LONG_TEXT"
+  } ],
+  "layout" : [ {
+    "divider" : {
+      "clazz" : "RowField",
+      "id" : "940121976b56bfc948edee4af2b4c0ab",
+      "modDate" : "2025-02-19T21:00:11.000+00:00",
+      "name" : "Row Field",
+      "fieldType" : "Row",
+      "fieldTypeLabel" : "Row",
+      "iDate" : "2025-02-19T21:00:11.000+00:00",
+      "variable" : "rowField",
+      "dataType" : "SYSTEM"
+    },
+    "columns" : [ {
+      "columnDivider" : {
+        "clazz" : "ColumnField",
+        "id" : "c172dcb77c9ba5754b4d82278a9fb573",
+        "modDate" : "2025-02-19T21:00:11.000+00:00",
+        "name" : "Column Field",
+        "sortOrder" : 1,
+        "fieldType" : "Column",
+        "fieldTypeLabel" : "Column",
+        "iDate" : "2025-02-19T21:00:11.000+00:00",
+        "variable" : "columnField",
+        "dataType" : "SYSTEM"
+      },
+      "fields" : [ {
+        "clazz" : "TextField",
+        "searchable" : true,
+        "indexed" : true,
+        "listed" : true,
+        "id" : "a05be742bb5a2a8e4d36f0cb706e5765",
+        "modDate" : "2025-02-19T21:00:12.000+00:00",
+        "name" : "title",
+        "variable" : "title",
+        "required" : true,
+        "sortOrder" : 2,
+        "fixed" : true,
+        "fieldType" : "Text",
+        "fieldTypeLabel" : "Text",
+        "iDate" : "2025-02-19T21:00:11.000+00:00",
+        "dataType" : "TEXT"
+      }, {
+        "clazz" : "StoryBlockField",
+        "searchable" : true,
+        "indexed" : true,
+        "id" : "74b3290efc01392c5e4f9f1fab73a84d",
+        "modDate" : "2025-02-19T21:00:12.000+00:00",
+        "name" : "block",
+        "variable" : "block",
+        "sortOrder" : 3,
+        "fieldType" : "Story-Block",
+        "fieldTypeLabel" : "Block Editor",
+        "iDate" : "2025-02-19T21:00:11.000+00:00",
+        "dataType" : "LONG_TEXT"
+      } ]
+    } ]
+  } ],
+  "workflows" : [ {
+    "id" : "d61a59e1-a49c-46f2-a929-db2b4bfa88b2",
+    "variableName" : "SystemWorkflow"
+  } ],
+  "systemActionMappings" : { },
+  "dotCMSObjectType" : "ContentType"
+}
